@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <div class="container md:mx-auto box-border">
+    <div class="container w-100 lg:w-3/5 mx-auto box-border">
        <router-view />
     </div>
   </div>
