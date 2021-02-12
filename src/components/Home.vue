@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <AddPost />
+        <AddPost @addPostEmit="AddNewPost"/>
         <section v-if="errored">
             <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
         </section>
@@ -24,6 +24,17 @@ export default {
         return{
             posts: [],
             errored:false
+        }
+    },
+    methods:{
+        AddNewPost(newPost){
+            const {title, body} = newPost;
+            axios.post("https://jsonplaceholder.typicode.com/posts", { 
+                title: title, 
+                body: body
+            })
+            .then(res => (this.posts = [ ...this.posts, res.data ]))
+            .catch()
         }
     },
     created(){
